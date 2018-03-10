@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {GameModel} from '../../models/game-model';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-board',
@@ -6,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./board.component.css']
 })
 export class BoardComponent implements OnInit {
+
+  @Input() $game: Observable<GameModel>;
 
   constructor() { }
 

@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {PlayerColor} from '../../enums/player-color.enum';
+import {GameModel} from '../../models/game-model';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-board-cell',
@@ -12,11 +14,21 @@ export class BoardCellComponent implements OnInit {
 
   @Input() y: number;
 
-  checkerColor = PlayerColor.Red;
+  @Input() $game: Observable<GameModel>;
+
+  checkerColor: Observable<PlayerColor>;
 
   constructor() { }
 
   ngOnInit() {
+    this.checkerColor = this.$game.map(game => {
+      const player = game.board[this.y][this.x];
+      if (player) {
+        return game[`${player}Color`];
+      } else {
+        return null;
+      }
+    });
   }
 
 }

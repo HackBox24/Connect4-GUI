@@ -1,4 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {GameModel} from '../../models/game-model';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-board-row',
@@ -8,6 +10,8 @@ import {Component, Input, OnInit} from '@angular/core';
 export class BoardRowComponent implements OnInit {
 
   @Input() y: number;
+
+  @Input() $game: Observable<GameModel>;
 
   rowClass = 'normal-row';
 

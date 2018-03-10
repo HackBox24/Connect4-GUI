@@ -5,7 +5,7 @@ import {PlayComponent} from './pages/play/play.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'play', component: PlayComponent },
+  { path: 'play/:gameId', component: PlayComponent },
   { path: '**', redirectTo: 'home'}
 ];
 
