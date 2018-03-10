@@ -9,9 +9,18 @@ export class BoardRowComponent implements OnInit {
 
   @Input() y: number;
 
+  rowClass = 'normal-row';
+
   constructor() { }
 
   ngOnInit() {
+    if (this.y === 6) {
+      this.rowClass = 'top-row';
+    } else if (this.y === 1) {
+      this.rowClass = 'bottom-row';
+    } else {
+      this.rowClass = 'normal-row';
+    }
   }
 
 }

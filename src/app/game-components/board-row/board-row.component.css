@@ -1,0 +1,29 @@
+.left-cell {
+  border-left: black 10px solid;
+  border-right: black 5px solid;
+}
+
+.right-cell {
+  border-left: black 5px solid;
+  border-right: black 10px solid;
+}
+
+.normal-cell {
+  border-left: black 5px solid;
+  border-right: black 5px solid;
+}
+
+.top-row {
+  border-top: black solid 10px;
+  border-bottom: black solid 5px;
+}
+
+.bottom-row {
+  border-top: black solid 5px;
+  border-bottom: black solid 10px;
+}
+
+.normal-row {
+  border-top: black solid 5px;
+  border-bottom: black solid 5px;
+}
