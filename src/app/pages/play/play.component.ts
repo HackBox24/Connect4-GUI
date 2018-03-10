@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {PlayerColor} from '../../enums/player-color.enum';
 import {Observable} from 'rxjs/Observable';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {AngularFirestore} from 'angularfire2/firestore';
+import {share} from 'rxjs/operators';
 
 @Component({
   selector: 'app-play',
@@ -14,13 +16,16 @@ export class PlayComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private db: AngularFirestore
   ) { }
 
   ngOnInit() {
-    // this.$game = this.route.paramMap
-    //   .switchMap((params: ParamMap) =>
-    //     this.service.getHero(params.get('id')));
+    this.$game = this.route.paramMap
+      .switchMap((params: ParamMap) => {
+        return this.db.doc(`games/${params.get('id')}`).valueChanges()
+          .pipe(share());
+      });
   }
 
 }
