@@ -15,7 +15,6 @@ import { PlayComponent } from './pages/play/play.component';
 import { BoardComponent } from './game-components/board/board.component';
 import { BoardRowComponent } from './game-components/board-row/board-row.component';
 import { BoardCellComponent } from './game-components/board-cell/board-cell.component';
-import { OcticonDirective } from './directies/octicon.directive';
 
 
 @NgModule({
@@ -26,8 +25,7 @@ import { OcticonDirective } from './directies/octicon.directive';
     PlayComponent,
     BoardComponent,
     BoardRowComponent,
-    BoardCellComponent,
-    OcticonDirective
+    BoardCellComponent
   ],
   imports: [
     BrowserModule,
