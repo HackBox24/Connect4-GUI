@@ -12,6 +12,7 @@ import {environment} from '../environments/environment';
 import {AngularFirestoreModule} from 'angularfire2/firestore';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import { PlayComponent } from './pages/play/play.component';
+import { BoardComponent } from './game-components/board/board.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { PlayComponent } from './pages/play/play.component';
     AppComponent,
     NavComponent,
     HomeComponent,
-    PlayComponent
+    PlayComponent,
+    BoardComponent
   ],
   imports: [
     BrowserModule,
