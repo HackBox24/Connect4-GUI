@@ -16,6 +16,7 @@ import { BoardComponent } from './game-components/board/board.component';
 import { BoardRowComponent } from './game-components/board-row/board-row.component';
 import { BoardCellComponent } from './game-components/board-cell/board-cell.component';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
+import { CreateComponent } from './pages/create/create.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
     PlayComponent,
     BoardComponent,
     BoardRowComponent,
-    BoardCellComponent
+    BoardCellComponent,
+    CreateComponent
   ],
   imports: [
     BrowserModule,
