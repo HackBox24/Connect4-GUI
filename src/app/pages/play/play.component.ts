@@ -4,6 +4,8 @@ import {Observable} from 'rxjs/Observable';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {AngularFirestore} from 'angularfire2/firestore';
 import {share} from 'rxjs/operators';
+import {GameService} from '../../services/game.service';
+import {GameModel} from '../../models/game-model';
 
 @Component({
   selector: 'app-play',
@@ -12,18 +14,19 @@ import {share} from 'rxjs/operators';
 })
 export class PlayComponent implements OnInit {
 
-  $game = Observable.of(GAME);
+  $game = Observable<GameModel | null>;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private db: AngularFirestore
+    private db: AngularFirestore,
+    private games: GameService
   ) { }
 
   ngOnInit() {
     this.$game = this.route.paramMap
       .switchMap((params: ParamMap) => {
-        return this.db.doc(`games/${params.get('id')}`).valueChanges()
+        return this.games.get(params.get('id'))
           .pipe(share());
       });
   }
