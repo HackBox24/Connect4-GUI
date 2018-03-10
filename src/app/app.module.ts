@@ -13,6 +13,8 @@ import {AngularFirestoreModule} from 'angularfire2/firestore';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import { PlayComponent } from './pages/play/play.component';
 import { BoardComponent } from './game-components/board/board.component';
+import { BoardRowComponent } from './game-components/board-row/board-row.component';
+import { BoardCellComponent } from './game-components/board-cell/board-cell.component';
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import { BoardComponent } from './game-components/board/board.component';
     NavComponent,
     HomeComponent,
     PlayComponent,
-    BoardComponent
+    BoardComponent,
+    BoardRowComponent,
+    BoardCellComponent
   ],
   imports: [
     BrowserModule,
