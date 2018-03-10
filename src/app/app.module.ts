@@ -15,6 +15,7 @@ import { PlayComponent } from './pages/play/play.component';
 import { BoardComponent } from './game-components/board/board.component';
 import { BoardRowComponent } from './game-components/board-row/board-row.component';
 import { BoardCellComponent } from './game-components/board-cell/board-cell.component';
+import {AngularFontAwesomeModule} from 'angular-font-awesome';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { BoardCellComponent } from './game-components/board-cell/board-cell.comp
     NgbModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
