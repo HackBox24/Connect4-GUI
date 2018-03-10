@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-board-row',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./board-row.component.css']
 })
 export class BoardRowComponent implements OnInit {
+
+  @Input() y: number;
 
   constructor() { }
 
