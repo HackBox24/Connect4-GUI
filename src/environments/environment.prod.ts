@@ -1,5 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
   firebase: {
     apiKey: 'AIzaSyDHuiVLExveFj22DEtm0j_9Ai1iLoe2odw',
     authDomain: 'hack-box-c4.firebaseapp.com',

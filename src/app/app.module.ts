@@ -7,6 +7,10 @@ import { AppComponent } from './app.component';
 import { NavComponent } from './shared/nav/nav.component';
 import {HomeComponent} from './pages/home/home.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {AngularFireModule} from 'angularfire2';
+import {environment} from '../environments/environment';
+import {AngularFirestoreModule} from 'angularfire2/firestore';
+import {AngularFireAuthModule} from 'angularfire2/auth';
 
 
 @NgModule({
@@ -18,7 +22,10 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
