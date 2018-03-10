@@ -17,6 +17,8 @@ import { BoardRowComponent } from './game-components/board-row/board-row.compone
 import { BoardCellComponent } from './game-components/board-cell/board-cell.component';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import { CreateComponent } from './pages/create/create.component';
+import { AuthService } from './services/auth.service';
+import { GameService } from './services/game.service';
 
 
 @NgModule({
@@ -39,7 +41,7 @@ import { CreateComponent } from './pages/create/create.component';
     AngularFireAuthModule,
     AngularFontAwesomeModule
   ],
-  providers: [],
+  providers: [AuthService, GameService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
