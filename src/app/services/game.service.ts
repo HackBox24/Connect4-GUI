@@ -34,6 +34,7 @@ export class GameService {
       player4Color: null,
       player_count: 2,
       players: [player1],
+      turn: 'player1',
       board: {
         1: {
           1: null,
