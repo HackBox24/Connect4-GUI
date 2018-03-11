@@ -1,9 +1,10 @@
 <div class="container">
   <div class="mt-5" *ngIf="$game | async as game; else loading">
-    <h4>You are <span [ngStyle]="{ 'color': game[player_no + 'Color'] }">player {{playerNumber(player_no)}}<span *ngIf="game.turn === player_no"><br />It's your turn.</span></span></h4>
-    <p *ngIf="game.turn !== player_no">It's <span [ngStyle]="{ 'color': game[game.turn + 'Color'] }">player {{playerNumber(game.turn)}}</span>'s turn.</p>
+    <h4>You are <span [ngStyle]="{ 'color': game[player_no + 'Color'] }">player {{playerNumber(player_no)}}<span *ngIf="game.turn === player_no && game.winner === null"><br />It's your turn.</span></span></h4>
+    <p *ngIf="game.turn !== player_no && game.winner === null">It's <span [ngStyle]="{ 'color': game[game.turn + 'Color'] }">player {{playerNumber(game.turn)}}</span>'s turn.</p>
     <p class="small">You're game code is <i>{{game.code}}</i><br />
     Share you're code or <u>https://connect4.hackbox.tech/play/{{game.code}}</u> with you fellow players.</p>
+    <h1 class="text-center" *ngIf="game.winner !== null" [ngStyle]="{ 'color': game[game.turn + 'Color'] }">Player {{playerNumber(game.winner)}} won!</h1>
     <app-board [$game]="$game" [player]="player_no"></app-board>
   </div>
 </div>
