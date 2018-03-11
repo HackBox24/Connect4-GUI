@@ -26,7 +26,7 @@ export class GameService {
   create(player1: string) {
     const id = makeID();
     return this.db.doc(`games/${id}`).set({
-      code: 'hjx21',
+      code: id,
       player1: player1,
       player1Color: PlayerColor.Red,
       player2: null,
@@ -125,7 +125,69 @@ export class GameService {
     );
   }
 
+  playTurn(game: GameModel, player: string, column: number) {
+    console.log(game.code, player, column);
+    if (game.turn === player) {
+      const row = newCheckerPosition(game, column);
+      if (row === false) {
+        return false;
+      }
+      const nextTurn = nextPlayerTurn(player, game.players.length);
+      console.log(player, ' has dropped a checker at (', column, ',', row, ') in game ', game.code, '\nThe next player is ', nextTurn);
+      const newData = game;
+      newData.board[row][column] = player;
+      newData.turn = nextTurn;
+      this.db.doc(`games/${game.code}`).set(newData)
+        .catch(error => console.error(error));
+    }
+  }
 }
+
+const nextPlayerTurn = (player: string, player_count: number) => {
+  switch (player) {
+    case 'player1':
+      if (player_count === 1) {
+        return 'player1';
+      }
+      return 'player2';
+
+    case 'player2':
+      if (player_count === 2) {
+        return 'player1';
+      }
+      return 'player3';
+
+    case 'player3':
+      if (player_count === 3) {
+        return 'player1';
+      }
+      return 'player4';
+
+    case 'player4':
+      return 'player1';
+
+    default:
+      return player;
+  }
+};
+
+const newCheckerPosition = (game: GameModel, column: number): number | false => {
+  if (game.board[1][column] === null) {
+    return 1;
+  } else if (game.board[2][column] === null) {
+    return 2;
+  } else if (game.board[3][column] === null) {
+    return 3;
+  } else if (game.board[4][column] === null) {
+    return 4;
+  } else if (game.board[5][column] === null) {
+    return 5;
+  } else if (game.board[6][column] === null) {
+    return 6;
+  } else {
+    return false;
+  }
+};
 
 const makeID = () => {
   let text = '';

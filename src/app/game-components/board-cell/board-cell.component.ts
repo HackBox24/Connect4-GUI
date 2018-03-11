@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {PlayerColor} from '../../enums/player-color.enum';
 import {GameModel} from '../../models/game-model';
 import {Observable} from 'rxjs/Observable';
+import {GameService} from '../../services/game.service';
 
 @Component({
   selector: 'app-board-cell',
@@ -20,7 +21,9 @@ export class BoardCellComponent implements OnInit {
 
   checkerColor: Observable<PlayerColor>;
 
-  constructor() { }
+  constructor(
+    private games: GameService
+  ) { }
 
   ngOnInit() {
     this.checkerColor = this.$game.map(game => {
@@ -31,6 +34,10 @@ export class BoardCellComponent implements OnInit {
         return null;
       }
     });
+  }
+
+  dropChecker(game: GameModel) {
+    this.games.playTurn(game, this.player, this.x);
   }
 
 }

@@ -1,5 +1,7 @@
-<div class="text-center">
-  <fa name="circle" size="5x" [ngStyle]="{'color': (checkerColor | async)}" *ngIf="($game | async).board[y][x]; else empty"></fa>
+<div *ngIf="$game | async as game">
+  <div class="text-center" (click)="dropChecker(game)">
+    <fa name="circle" size="5x" [ngStyle]="{'color': (checkerColor | async)}" *ngIf="game.board[y][x]; else empty"></fa>
+  </div>
 </div>
 <ng-template #empty>
   <fa name="circle" size="5x" style="color: white"></fa>

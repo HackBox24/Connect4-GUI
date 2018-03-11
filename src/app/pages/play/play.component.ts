@@ -36,7 +36,6 @@ export class PlayComponent implements OnInit {
             .switchMap((params: ParamMap) => {
               this.player_no = this.games.player_no;
               const joined = this.games.join(params.get('id'), authState.uid);
-              console.log(this.player_no);
               return joined;
           });
         } else {
