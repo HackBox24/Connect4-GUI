@@ -20,6 +20,7 @@ import { CreateComponent } from './pages/create/create.component';
 import { AuthService } from './services/auth.service';
 import { GameService } from './services/game.service';
 import { ConnectComponent } from './pages/connect/connect.component';
+import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { ConnectComponent } from './pages/connect/connect.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    FormsModule
   ],
   providers: [AuthService, GameService],
   bootstrap: [AppComponent]

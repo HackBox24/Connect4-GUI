@@ -1,3 +1,14 @@
-<p>
-  connect works!
-</p>
+<div  class="mt-5 container">
+  <div class="container mt-5">
+    <div class="jumbotron">
+      <h1 class="display-4">Connect Four <small>by Hackbox</small></h1>
+      <p class="lead">Enter a game code to join the game.</p>
+      <hr class="my-4">
+      <div class="form-group">
+        <input type="text" class="form-control" id="gameCode" placeholder="Game Code" maxlength="5" [(ngModel)]="gameCode">
+      </div>
+      <button type="submit" class="btn btn-primary" (click)="join()">Join</button>
+    </div>
+  </div>
+
+</div>
