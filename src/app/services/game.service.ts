@@ -3,6 +3,7 @@ import {AngularFirestore} from 'angularfire2/firestore';
 import {Observable} from 'rxjs/Observable';
 import {GameModel} from '../models/game-model';
 import {PlayerColor} from '../enums/player-color.enum';
+import {take, tap} from 'rxjs/operators';
 
 @Injectable()
 export class GameService {
@@ -26,12 +27,12 @@ export class GameService {
       code: 'hjx21',
       player1: player1,
       player1Color: PlayerColor.Red,
-      player2: 'player2',
+      player2: null,
       player2Color: PlayerColor.Green,
       player3: null,
-      player3Color: null,
+      player3Color: PlayerColor.Yellow,
       player4: null,
-      player4Color: null,
+      player4Color: PlayerColor.Blue,
       player_count: 2,
       players: [player1],
       turn: 'player1',
@@ -98,13 +99,17 @@ export class GameService {
   join(game_id: string, player: string) {
     const game = this.db.doc<GameModel>(`games/${game_id}`);
     return game.valueChanges()
-      .switchMap(base => {
-        const new_game = game as GameModel;
-        const new_player_no = `player${base.players.length + 1}`;
-        new_game[new_player_no] = player;
-        new_game.players.push(player);
-        return game.set(new_game);
-      });
+      .pipe(
+        tap(base => {
+          if (!base.players.includes(player) && base.players.length < 5) {
+            const new_game = base as GameModel;
+            const new_player_no = `player${base.players.length + 1}`;
+            new_game[new_player_no] = player;
+            new_game.players.push(player);
+            game.set(new_game);
+          }
+      })
+    );
   }
 
 }

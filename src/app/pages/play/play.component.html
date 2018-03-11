@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="mt-5" *ngIf="($game | async) !== null; else loading">
+  <div class="mt-5" *ngIf="($game | async) !== null && ($authState | async) !== null; else loading">
     <h5>You're game code is <i>{{($game | async).code}}</i></h5>
     <p>Share you're code or <u>https://connect4.hackbox.tech/play/{{($game | async).code}}</u> with you fellow players.</p>
     <app-board [$game]="$game"></app-board>
