@@ -123,7 +123,7 @@ export class GameService {
 
   playTurn(game: GameModel, player: string, column: number) {
     console.log(game.code, player, column);
-    if (game.turn === player) {
+    if (game.turn === player && game.winner === null) {
       const row = newCheckerPosition(game, column);
       if (row === false) {
         return false;
