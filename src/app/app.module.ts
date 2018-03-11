@@ -19,6 +19,7 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import { CreateComponent } from './pages/create/create.component';
 import { AuthService } from './services/auth.service';
 import { GameService } from './services/game.service';
+import { ConnectComponent } from './pages/connect/connect.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { GameService } from './services/game.service';
     BoardComponent,
     BoardRowComponent,
     BoardCellComponent,
-    CreateComponent
+    CreateComponent,
+    ConnectComponent
   ],
   imports: [
     BrowserModule,
