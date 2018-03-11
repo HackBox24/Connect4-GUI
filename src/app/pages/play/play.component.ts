@@ -46,4 +46,23 @@ export class PlayComponent implements OnInit {
       });
   }
 
+  playerNumber(playerNo: string) {
+    switch (playerNo) {
+      case 'player1':
+        return 1;
+
+      case 'player2':
+        return 2;
+
+      case 'player3':
+        return 3;
+
+      case 'player4':
+        return 4;
+
+      default:
+        return null;
+    }
+  }
+
 }
