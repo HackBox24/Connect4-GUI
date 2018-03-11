@@ -11,6 +11,8 @@ export class BoardComponent implements OnInit {
 
   @Input() $game: Observable<GameModel>;
 
+  @Input() player: string;
+
   constructor() { }
 
   ngOnInit() {

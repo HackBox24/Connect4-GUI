@@ -16,6 +16,8 @@ export class BoardCellComponent implements OnInit {
 
   @Input() $game: Observable<GameModel>;
 
+  @Input() player: string;
+
   checkerColor: Observable<PlayerColor>;
 
   constructor() { }

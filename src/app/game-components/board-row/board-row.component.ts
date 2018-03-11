@@ -13,6 +13,8 @@ export class BoardRowComponent implements OnInit {
 
   @Input() $game: Observable<GameModel>;
 
+  @Input() player: string;
+
   rowClass = 'normal-row';
 
   constructor() { }

@@ -18,7 +18,7 @@ export class PlayComponent implements OnInit {
 
   $game: Observable<GameModel | null>;
 
-  $authState: Observable<any | null>;
+  player_no: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -34,7 +34,10 @@ export class PlayComponent implements OnInit {
         if (authState !== null) {
           return this.route.paramMap
             .switchMap((params: ParamMap) => {
-              return this.games.join(params.get('id'), authState.uid);
+              this.player_no = this.games.player_no;
+              const joined = this.games.join(params.get('id'), authState.uid);
+              console.log(this.player_no);
+              return joined;
           });
         } else {
           this.afa.login()

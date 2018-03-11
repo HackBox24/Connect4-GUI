@@ -10,6 +10,8 @@ export class GameService {
 
   public $game: Observable<GameModel | null>;
 
+  player_no: string;
+
   constructor(
     private db: AngularFirestore
   ) {
@@ -104,9 +106,20 @@ export class GameService {
           if (!base.players.includes(player) && base.players.length < 5) {
             const new_game = base as GameModel;
             const new_player_no = `player${base.players.length + 1}`;
+            this.player_no = new_player_no;
             new_game[new_player_no] = player;
             new_game.players.push(player);
             game.set(new_game);
+          } else {
+            if (base.player1 === player) {
+              this.player_no = 'player1';
+            } else if (base.player2 === player) {
+              this.player_no = 'player2';
+            } else if (base.player3 === player) {
+              this.player_no = 'player3';
+            } else if (base.player4 === player) {
+              this.player_no = 'player4';
+            }
           }
       })
     );
