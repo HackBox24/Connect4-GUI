@@ -1,6 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" routerLink="/">Connect Four <small>by Hackbox</small></a>
   <ul class="navbar-nav mr-auto">
+    <li class="nav-item" [swal]="gdpr">
+      <a class="nave-link">🇪🇺</a>
+    </li>
     <li class="nav-item">
       <a class="nav-link" routerLink="home" routerLinkActive="active">Home <span class="sr-only">(current)</span></a>
     </li>
@@ -14,3 +17,9 @@
     </li>
   </ul>
 </nav>
+<swal
+  #gdpr
+  title="Are we GDPR Compliant?"
+  imageUrl="https://media1.tenor.com/images/313fed5d8fdd8b0845e19555a1da65c3/tenor.gif?itemid=5236578"
+  type="question">
+</swal>

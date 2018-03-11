@@ -21,6 +21,7 @@ import { AuthService } from './services/auth.service';
 import { GameService } from './services/game.service';
 import { ConnectComponent } from './pages/connect/connect.component';
 import {FormsModule} from '@angular/forms';
+import {SweetAlert2Module} from '@toverux/ngx-sweetalert2';
 
 
 @NgModule({
@@ -43,7 +44,13 @@ import {FormsModule} from '@angular/forms';
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFontAwesomeModule,
-    FormsModule
+    FormsModule,
+    SweetAlert2Module.forRoot({
+      buttonsStyling: false,
+      customClass: 'modal-content',
+      confirmButtonClass: 'btn btn-primary',
+      cancelButtonClass: 'btn'
+    })
   ],
   providers: [AuthService, GameService],
   bootstrap: [AppComponent]
