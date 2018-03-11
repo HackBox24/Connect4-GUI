@@ -143,6 +143,51 @@ export class GameService {
   }
 }
 
+const won = (x: number, y: number, game: GameModel, player: string) => {
+};
+
+const determineDirections = (x: number, y: number, game: GameModel, player: string): string[] => {
+  const directions = [];
+
+  // Check up
+  if (game.board[y + 1] !== undefined && game.board[y + 1][x] === player) {
+    directions.push('up');
+  }
+
+  // Check Down
+  if (game.board[y - 1] !== undefined && game.board[y - 1][x] === player) {
+    directions.push('down');
+  }
+
+  // Check right
+  if (game.board[x + 1] !== undefined && game.board[y][x + 1] === player) {
+    directions.push('right');
+  }
+
+  // Check left
+  if (game.board[x - 1] !== undefined && game.board[y][x - 1] === player) {
+    directions.push('left');
+  }
+
+  if (game.board[y + 1] !== undefined && game.board[x + 1] !== undefined && game.board[y + 1][x + 1] === player) {
+    directions.push('up right');
+  }
+
+  if (game.board[y + 1] !== undefined && game.board[x - 1] !== undefined && game.board[y + 1][x - 1] === player) {
+    directions.push('up left');
+  }
+
+  if (game.board[y - 1] !== undefined && game.board[x + 1] !== undefined && game.board[y - 1][x + 1] === player) {
+    directions.push('down right');
+  }
+
+  if (game.board[y - 1] !== undefined && game.board[x - 1] !== undefined && (game.board[y - 1][x - 1] === player) {
+    directions.push('down left');
+  }
+
+  return directions;
+};
+
 const nextPlayerTurn = (player: string, player_count: number) => {
   switch (player) {
     case 'player1':
