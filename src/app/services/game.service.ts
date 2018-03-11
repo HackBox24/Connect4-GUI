@@ -18,11 +18,6 @@ export class GameService {
     this.$game = Observable.of(null);
   }
 
-  get(id: string) {
-    this.$game = this.db.doc<GameModel>(`games/${id}`).valueChanges();
-    return this.$game;
-  }
-
   create(player1: string) {
     const id = makeID();
     return this.db.doc(`games/${id}`).set({
@@ -38,6 +33,7 @@ export class GameService {
       player_count: 2,
       players: [player1],
       turn: 'player1',
+      winner: null,
       board: {
         1: {
           1: null,
@@ -181,7 +177,7 @@ const determineDirections = (x: number, y: number, game: GameModel, player: stri
     directions.push('down right');
   }
 
-  if (game.board[y - 1] !== undefined && game.board[x - 1] !== undefined && (game.board[y - 1][x - 1] === player) {
+  if (game.board[y - 1] !== undefined && game.board[x - 1] !== undefined && game.board[y - 1][x - 1] === player) {
     directions.push('down left');
   }
 

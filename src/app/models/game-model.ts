@@ -12,6 +12,7 @@ export interface GameModel {
   player4Color: PlayerColor | null;
   player_count: number;
   turn: string;
+  winner: string | null;
   players: string[];
   board: {
     1: {
