@@ -90,7 +90,8 @@ export class GameService {
           7: null,
         }
       }
-    });
+    })
+      .then(() => Promise.resolve(id));
   }
 
   join(game_id: string, player: string) {
@@ -109,8 +110,8 @@ export class GameService {
 
 const makeID = () => {
   let text = '';
-  const possible = '😀😁😆😂😇🙃😉😍😘😛😜🤓😎😟😭😤😡😱😰🤔😶😕😖😬😪😈👻😺😹👍👶🧔👩🤷🍑🍆';
-
+  const possible = 'abcdefghijklmnopqrstuvwxyz1234567890';
+  // 😁😂😃😄😅😆😉😊😋😌😍😏😒😓😔😖😘😚😜😝😞😠😡😢😣😤😥😨😩😪😫😭😰😱😲😳😵😷😸😹😺😻😼😽😾😿🙀🙅🙆🙇🙈🙉🙊🙋🙌🙍🙎🙏
   for (let i = 0; i < 5; i++) {
     text += possible.charAt(Math.floor(Math.random() * possible.length));
   }
