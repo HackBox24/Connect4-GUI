@@ -133,13 +133,101 @@ export class GameService {
       const newData = game;
       newData.board[row][column] = player;
       newData.turn = nextTurn;
+      newData.winner = won(column, row, game, player);
       this.db.doc(`games/${game.code}`).set(newData)
         .catch(error => console.error(error));
     }
   }
 }
 
-const won = (x: number, y: number, game: GameModel, player: string) => {
+const won = (x: number, y: number, game: GameModel, player: string): string | null => {
+  const directions = determineDirections(x, y, game, player);
+
+  for (const direction of directions) {
+    let counter = 1;
+    let counterX = x;
+    let counterY = y;
+    do {
+      if (checkDirection(direction, counterX, counterY, game, player) === true) {
+        counter ++;
+        if (direction.includes('up')) {
+          counterY ++;
+        }
+        if (direction.includes('down')) {
+          counterY --;
+        }
+        if (direction.includes('right')) {
+          counterX ++;
+        }
+        if (direction.includes('left')) {
+          counterX --;
+        }
+      } else {
+        break;
+      }
+    } while (true);
+    if (counter > 3) {
+      return player;
+    }
+  }
+
+  return null;
+};
+
+const checkDirection = (direction: string, x: number, y: number, game: GameModel, player: string): boolean => {
+  switch (direction) {
+    case 'up' :
+      if (game.board[y + 1] !== undefined && game.board[y + 1][x] === player) {
+        return true;
+      }
+      break;
+
+    case 'down':
+      if (game.board[y - 1] !== undefined && game.board[y - 1][x] === player) {
+        return true;
+      }
+      break;
+
+    case 'right':
+      if (game.board[x + 1] !== undefined && game.board[y][x + 1] === player) {
+        return true;
+      }
+      break;
+
+    case 'left':
+      if (game.board[x - 1] !== undefined && game.board[y][x - 1] === player) {
+        return true;
+      }
+      break;
+
+    case 'up right':
+      if (game.board[y + 1] !== undefined && game.board[x + 1] !== undefined && game.board[y + 1][x + 1] === player) {
+        return true;
+      }
+      break;
+
+    case 'up left':
+      if (game.board[y + 1] !== undefined && game.board[x - 1] !== undefined && game.board[y + 1][x - 1] === player) {
+        return true;
+      }
+      break;
+
+    case 'down right':
+      if (game.board[y - 1] !== undefined && game.board[x + 1] !== undefined && game.board[y - 1][x + 1] === player) {
+        return true;
+      }
+      break;
+
+    case 'down left':
+      if (game.board[y - 1] !== undefined && game.board[x - 1] !== undefined && game.board[y - 1][x - 1] === player) {
+        return true;
+      }
+      break;
+
+    default:
+      break;
+  }
+  return false;
 };
 
 const determineDirections = (x: number, y: number, game: GameModel, player: string): string[] => {
@@ -165,18 +253,22 @@ const determineDirections = (x: number, y: number, game: GameModel, player: stri
     directions.push('left');
   }
 
+  // Check up right
   if (game.board[y + 1] !== undefined && game.board[x + 1] !== undefined && game.board[y + 1][x + 1] === player) {
     directions.push('up right');
   }
 
+  // Check up left
   if (game.board[y + 1] !== undefined && game.board[x - 1] !== undefined && game.board[y + 1][x - 1] === player) {
     directions.push('up left');
   }
 
+  // Check down right
   if (game.board[y - 1] !== undefined && game.board[x + 1] !== undefined && game.board[y - 1][x + 1] === player) {
     directions.push('down right');
   }
 
+  // Check down left
   if (game.board[y - 1] !== undefined && game.board[x - 1] !== undefined && game.board[y - 1][x - 1] === player) {
     directions.push('down left');
   }
