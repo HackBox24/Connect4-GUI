@@ -4,15 +4,15 @@
     <p *ngIf="game.turn !== player_no && game.winner === null">It's <span [ngStyle]="{ 'color': game[game.turn + 'Color'] }">player {{playerNumber(game.turn)}}</span>'s turn.</p>
     <p class="small">
       There are {{game.players.length}} players connected<br />
-      You're game code is <i>{{game.code}}</i><br />
-      Share you're code or <u>https://connect4.hackbox.tech/play/{{game.code}}</u> with you fellow players.</p>
-    <h1 class="text-center" *ngIf="game.winner !== null" [ngStyle]="{ 'color': game[game.turn + 'Color'] }">Player {{playerNumber(game.winner)}} won!</h1>
+      your game code is <i>{{game.code}}</i><br />
+      Share your code or <u>https://connect4.hackbox.tech/play/{{game.code}}</u> with you fellow players.</p>
+    <h1 class="text-center" *ngIf="game.winner !== null" [ngStyle]="{ 'color': game[game.winner + 'Color'] }">Player {{playerNumber(game.winner)}} won!</h1>
     <app-board [$game]="$game" [player]="player_no"></app-board>
   </div>
 </div>
 
 <ng-template #loading>
-  <p class="small mt-5">We're just fetching you're game. If nothing loads, it probably means something went wrong. You could try reloading or creating another game.</p>
+  <p class="small mt-5">We're just fetching your game. If nothing loads, it probably means something went wrong. You could try reloading or creating another game.</p>
   <div class="sk-folding-cube" style="margin-top: 35%;">
     <div class="sk-cube1 sk-cube"></div>
     <div class="sk-cube2 sk-cube"></div>
